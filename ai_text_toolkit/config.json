@@ -1,0 +1,7 @@
+{
+  "detector_backend": "auto",
+  "humanizer_backend": "auto",
+  "humanizer_strength": "medium",
+  "detector_model": "Hello-SimpleAI/chatgpt-detector-roberta",
+  "paraphraser_model": "humarin/chatgpt_paraphraser_on_T5_base"
+}
