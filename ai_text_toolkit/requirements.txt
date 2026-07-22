@@ -1,0 +1,21 @@
+# Core toolkit: NO third-party packages required.
+# The default detector (heuristic) and humanizer (rule-based), plus document
+# extraction for .docx .odt .html .rtf .txt .md, use only the Python standard
+# library and run fully offline.
+#
+# Requirements:
+#   - Python 3.8+
+#
+# ---------------------------------------------------------------------------
+# OPTIONAL: read PDF documents
+#   pip install pypdf          # small, pure-Python; only needed for .pdf input
+#
+# ---------------------------------------------------------------------------
+# OPTIONAL open-source model backends (higher quality). Install these only if
+# you want the "model" backend. The first run downloads the model weights.
+#
+#   pip install transformers torch sentencepiece
+#
+# Open-source models used (Apache-2.0 / MIT):
+#   detector    : Hello-SimpleAI/chatgpt-detector-roberta
+#   paraphraser : humarin/chatgpt_paraphraser_on_T5_base
