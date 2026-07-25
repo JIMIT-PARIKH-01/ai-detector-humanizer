@@ -22,6 +22,14 @@ def test_detector_score_in_range():
     assert 0 <= r.score <= 100
 
 
+def test_detector_flags_phrase_heavy_llm_text():
+    text = ("It is important to note that we must delve into a myriad of cutting-edge "
+            "solutions. Furthermore, this underscores a pivotal role in the ever-evolving "
+            "landscape. In conclusion, it is crucial to harness the power of robust paradigms.")
+    r = ai_detector.detect_heuristic(text)
+    assert r.score >= 65 and r.verdict == "Likely AI-generated"
+
+
 def test_humanizer_rules_rewrites():
     out = ai_humanizer.humanize_rules("It is important to note that we utilize numerous tools.")
     assert "use" in out and "many" in out

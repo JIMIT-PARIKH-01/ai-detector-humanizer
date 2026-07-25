@@ -31,6 +31,15 @@ AI_PHRASES = [
     "when it comes to", "on the other hand", "as previously mentioned",
     "a wide range of", "gain a deeper understanding", "ever-evolving",
     "cutting-edge", "seamless", "unlock the", "harness the power",
+    # additional modern LLM tells
+    "in today's fast-paced", "it is crucial to", "it goes without saying",
+    "needless to say", "first and foremost", "last but not least",
+    "a myriad of", "a plethora of", "underscore", "pivotal role",
+    "the landscape of", "foster a", "let's dive", "dive into", "let's explore",
+    "in essence", "ultimately,", "notably,", "consequently,", "as a result,",
+    "elevate your", "the world of", "boasts", "robust", "holistic",
+    "paradigm", "synergy", "game-changer", "at the end of the day",
+    "rich tapestry", "testament to", "realm of", "meticulous", "meticulously",
 ]
 
 CONTRACTION_RE_TOKENS = {"n't", "'re", "'ve", "'ll", "'d", "'m", "'s"}
@@ -129,16 +138,22 @@ def detect_heuristic(text: str) -> DetectionResult:
     ai_burst = _clamp(1 - cv / 0.6)          # low variance -> AI
     ai_ttr = _clamp((0.55 - ttr) / 0.35)     # low richness -> AI
     ai_contract = _clamp(1 - contraction_rate * 3)
-    ai_phrase = _clamp(phrase_density / 2.0)
+    ai_phrase = _clamp(phrase_density / 1.5)   # stock LLM phrases: strongest tell
     ai_rep = _clamp(starter_rep * 3)
 
+    # Weighted blend -- the stock-phrase signal is weighted highest because it's
+    # the most reliable indicator of generic LLM prose.
     score = 100 * (
-        0.35 * ai_burst +
-        0.10 * ai_ttr +
-        0.20 * ai_contract +
-        0.25 * ai_phrase +
-        0.10 * ai_rep
+        0.25 * ai_burst +
+        0.08 * ai_ttr +
+        0.22 * ai_contract +
+        0.37 * ai_phrase +
+        0.08 * ai_rep
     )
+    # A high density of stock LLM phrases is a strong tell on its own
+    # (>= 4 per 100 words is well beyond typical human usage).
+    if phrase_density >= 4:
+        score = max(score, 68)
 
     signals = {
         "sentences": len(sentences),
