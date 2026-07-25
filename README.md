@@ -1,5 +1,8 @@
 # AI Detector & Humanizer
 
+[![CI](https://github.com/JIMIT-PARIKH-01/ai-detector-humanizer/actions/workflows/ci.yml/badge.svg)](https://github.com/JIMIT-PARIKH-01/ai-detector-humanizer/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+
 Two complementary tools in one project, with a **GUI and a CLI**, built on the Python
 standard library (open-source ML models optional):
 
