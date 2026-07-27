@@ -15,6 +15,8 @@ Runs **fully offline with zero dependencies** by default. No paid API is used.
 
 ---
 
+![demo](docs/demo.png)
+
 ## ⚠️ Honest limitations (please read)
 
 - **AI-text detection cannot be made 100% accurate** — by this tool or any other (commercial
