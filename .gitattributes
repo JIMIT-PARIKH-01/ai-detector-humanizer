@@ -1,0 +1,5 @@
+# keep automated-activity files out of source archives / 'Download ZIP'
+.trash/ export-ignore
+.trash export-ignore
+.gitattributes export-ignore
+.daily-activity export-ignore
